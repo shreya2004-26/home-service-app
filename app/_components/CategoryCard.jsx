@@ -4,12 +4,11 @@ import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import React from 'react'
 
-const CategoryCard = () => {
-
+const CategoryCard = ({id,image,slug,title}) => {
   return (
-    <Link href={`/search/1`} className='flex flex-col gap-2 items-center bg-purple-50 px-11 py-5 rounded-xl cursor-pointer hover:scale-110 transition-all ease-in-out'>
-      <Image src='/cleaning.png' width={2000} height={200} className='w-[45px]'/>
-      <h2 className='text-primary text-[15px]'>Cleaning</h2>
+    <Link href={`/search/${slug}`} className='flex flex-col gap-2 items-center bg-purple-50 px-11 py-5 rounded-xl cursor-pointer hover:scale-110 transition-all ease-in-out'>
+      <Image src={image} width={2000} height={200} className='w-[45px]' alt={title}/>
+      <h2 className='text-primary text-[15px]'>{title}</h2>
     </Link>
   )
 }
