@@ -1,10 +1,8 @@
 "use client";
 import { Calendar } from "@/components/ui/calendar";
-import React, { useState } from "react";
+import React from "react";
 
-const Calender = () => {
-  const [date, setDate] = useState(new Date());
-
+const Calender = ({ date, setDate }) => {
   return (
     <div className="flex flex-col mt-5 gap-3 w-fit">
       <h2 className="font-bold">Select Date</h2>

@@ -5,7 +5,7 @@ import React from "react";
 
 const CategoriesCard = ({ id, name, work, image, category, address }) => {
   return (
-    <div className="flex flex-col gap-1 w-[250px] h-[380px] border shadow-md rounded-xl cursor-pointer hover:scale-105 mb-10 transition-all ease-in-out ">
+    <div className="flex flex-col gap-1 w-[300px] md:w-[250px] h-[380px] border shadow-md rounded-xl cursor-pointer hover:scale-105 transition-all ease-in-out ">
       <Image
         src={image}
         alt="img1"

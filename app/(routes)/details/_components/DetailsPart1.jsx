@@ -49,8 +49,8 @@ const DetailsPart1 = () => {
   };
   return (
     <>
-      <div className="flex justify-between items-center">
-        <div className="flex gap-6 items-center">
+      <div className=" mt-4 md:mt-0 flex flex-col md:flex-row md:justify-between items-center">
+        <div className=" flex flex-col md:flex md:flex-row gap-6 items-center">
           {/* {console.log("55", worker?.image?.url)} */}
           <Image
             src={worker?.image?.url}
@@ -72,7 +72,7 @@ const DetailsPart1 = () => {
             </h2>
           </div>
         </div>
-        <div className="flex flex-col gap-4 items-end">
+        <div className="p-3 md:p-0 flex flex-col gap-4 items-start md:items-end">
           <Button>
             <Upload />
           </Button>

@@ -1,11 +1,12 @@
 "use client";
 import { Calendar, Clock, MapPin, User } from "lucide-react";
+import moment from "moment";
 import Image from "next/image";
 import React from "react";
 
 const BookingCard = ({ name, work, image, address, date, time }) => {
   return (
-    <div className=" flex gap-5 p-4 mt-8 border rounded-lg shadow-sm">
+    <div className="flex gap-5 p-4 mt-8 border rounded-lg shadow-sm">
       <Image
         src={image}
         width={2000}
@@ -23,7 +24,10 @@ const BookingCard = ({ name, work, image, address, date, time }) => {
         </h2>
         <h2 className="text-gray-500 flex gap-2 text-[16px]">
           <Calendar className="text-primary" />
-          Service on : <span className="text-black">{date}</span>
+          Service on :{" "}
+          <span className="text-black">
+            {moment(date).format("DD-MM-YYYY")}
+          </span>
         </h2>
         <h2 className="text-gray-500 flex gap-2 text-[16px]">
           <Clock className="text-primary" />

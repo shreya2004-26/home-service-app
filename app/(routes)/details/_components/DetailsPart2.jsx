@@ -19,6 +19,8 @@ import Calender from "./Calender";
 import TimeSlot from "./TimeSlot";
 import { usePathname } from "next/navigation";
 import { useUser } from "@clerk/nextjs";
+import { Skeleton } from "@/components/ui/skeleton";
+import { toast } from "sonner";
 
 const DetailsPart2 = () => {
   const [worker, setWorker] = useState(null);
@@ -147,8 +149,9 @@ const DetailsPart2 = () => {
     );
     console.log("Booking", res);
     setBooking(res?.booking);
-    setTimeslot("");
     setDate("");
+    setTimeslot("");
+    toast("Booking successfully created!.");
   };
 
   return (
@@ -162,27 +165,34 @@ const DetailsPart2 = () => {
         </div>
         <div className="flex flex-col gap-5 mt-8">
           <h2 className="text-[24px] font-extrabold"> Gallery</h2>
-          <div className="flex gap-4 rounded-md">
-            {worker?.gallery?.map((curr, index) => {
-              {
-                console.log(curr?.url);
-              }
-              return (
-                <Image
-                  index={index}
-                  src={curr?.url}
-                  width={2000}
-                  height={200}
-                  className="w-[160px] rounded-lg"
-                />
-              );
-            })}
+          <div className="grid grid-cols-1 md:flex md:flex-row gap-4 rounded-md">
+            {workers == null
+              ? Array.from({ length: 3 }).map((curr, index) => {
+                  return (
+                    <Skeleton className="w-[160px] h-[106px] rounded-lg bg-gray-200" />
+                  );
+                })
+              : worker?.gallery?.map((curr, index) => {
+                  {
+                    console.log(curr?.url);
+                  }
+                  return (
+                    <Image
+                      index={index}
+                      src={curr?.url}
+                      width={2000}
+                      height={200}
+                      className="w-[300px] md:w-[160px] rounded-lg"
+                      alt="default.jpg"
+                    />
+                  );
+                })}
           </div>
         </div>
       </div>
-      <div className="flex flex-col gap-1">
+      <div className="w-[300px] flex flex-col gap-1 mb-5">
         <Sheet>
-          <SheetTrigger className="flex gap-2 bg-primary text-primary-foreground hover:bg-primary/90 text-center w-fit h-10 px-4 py-2 rounded-md">
+          <SheetTrigger className="flex gap-2 bg-primary text-primary-foreground hover:bg-primary/90 text-center w-[300px] md:w-fit h-10 px-16 md:px-4 py-2 rounded-md">
             <NotebookPen /> Book Appointment
           </SheetTrigger>
 
@@ -194,7 +204,7 @@ const DetailsPart2 = () => {
                 </SheetTitle>
                 <SheetDescription>
                   <h2>Select Date and Time slot to book an service</h2>
-                  <Calender />
+                  <Calender date={date} setDate={setDate} />
                   <TimeSlot timeslot={timeslot} setTimeslot={setTimeslot} />
                 </SheetDescription>
                 <div className="flex ml-36 gap-2 pt-2">
@@ -207,9 +217,15 @@ const DetailsPart2 = () => {
         </Sheet>
 
         <h2 className="text-[18px] font-extrabold mt-4">Similar Business</h2>
-        {workers?.map((curr, index) => {
-          return <SimilarBusinessCard key={index} data={curr} />;
-        })}
+        {workers == null
+          ? Array.from({ length: 8 }).map((curr, index) => {
+              return (
+                <Skeleton className="w-[346px] h-[118px] rounded-lg bg-gray-200" />
+              );
+            })
+          : workers?.map((curr, index) => {
+              return <SimilarBusinessCard key={index} data={curr} />;
+            })}
       </div>
     </div>
   );

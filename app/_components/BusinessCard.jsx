@@ -5,7 +5,7 @@ import React from "react";
 
 const BusinessCard = ({ id, name, address, title, slug, work, image }) => {
   return (
-    <div className="flex flex-col gap-1 w-[330px] h-[390p] border shadow-md rounded-xl cursor-pointer hover:scale-105 mb-10  transition-all ease-in-out">
+    <div className="flex flex-col gap-1 md:w-[330px] h-[390p] border shadow-md rounded-xl cursor-pointer hover:scale-105 mb-10  transition-all ease-in-out">
       <Image
         src={image}
         width={2000}

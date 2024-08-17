@@ -5,6 +5,7 @@ import BookingCard from "./_components/BookingCard";
 import { useUser } from "@clerk/nextjs";
 import { gql, request } from "graphql-request";
 import moment from "moment";
+import { Skeleton } from "@/components/ui/skeleton";
 
 const page = () => {
   const [bookings, setBookings] = useState(null);
@@ -79,22 +80,34 @@ const page = () => {
           </TabsTrigger>
         </TabsList>
         <TabsContent value="booked">
-          {bookings?.map((curr, index) => {
-            return (
-              <BookingCard
-                key={index}
-                name={curr?.worker?.name}
-                work={curr?.worker?.work}
-                image={curr?.worker?.image?.url}
-                address={curr?.worker?.address}
-                date={curr?.date}
-                time={curr?.time}
-              />
-            );
-          })}
+          {bookings == null ? (
+            Array.from({ length: 8 }).map((curr, index) => {
+              return (
+                <Skeleton className="w-[1376px] h-[185px] rounded-lg bg-gray-200 mt-8" />
+              );
+            })
+          ) : bookings.length == 0 ? (
+            <h2 className="mt-8 text-lg text-gray-600">
+              No bookings available!
+            </h2>
+          ) : (
+            bookings?.map((curr, index) => {
+              return (
+                <BookingCard
+                  key={index}
+                  name={curr?.worker?.name}
+                  work={curr?.worker?.work}
+                  image={curr?.worker?.image?.url}
+                  address={curr?.worker?.address}
+                  date={curr?.date}
+                  time={curr?.time}
+                />
+              );
+            })
+          )}
         </TabsContent>
         <TabsContent value="completed">
-          <div className="flex flex-col gap-5">
+          <div className="flex flex-col">
             {bookings?.map((curr, index) => {
               return (
                 <BookingCard

@@ -6,22 +6,23 @@ import React from "react";
 
 const Header = () => {
   return (
-    <div className="flex justify-between items-center py-5 border-b-[0px] px-4 shadow-sm">
-      <Link href="/" className="flex gap-8 items-center">
-        <Image
-          src="/logo.svg"
-          alt="logo"
-          width={2000}
-          height={200}
-          className="w-[180px]"
-        />
-        <Link
-          href={"/my-booking"}
-          className="mt-1 hover:text-primary hover:scale-105 text-gray-600"
-        >
-          Bookings
+    <div className="flex gap-6 md:justify-between items-center py-5 border-b-[0px] px-4 shadow-sm">
+      <div className="flex gap-4 md:gap-8 items-center">
+        <Link href={"/"}>
+          <Image
+            src="/logo.svg"
+            alt="logo"
+            width={2000}
+            height={200}
+            className="w-[180px]"
+          />
         </Link>
-      </Link>
+        <Link href={"/my-booking"}>
+          <h2 className="mt-1 hover:text-primary hover:scale-105 text-gray-600">
+            Bookings
+          </h2>
+        </Link>
+      </div>
 
       <SignedIn>
         <UserButton />
